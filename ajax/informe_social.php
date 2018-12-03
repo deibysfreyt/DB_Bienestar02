@@ -57,27 +57,27 @@
 					//Si no existe el solicitante y el beneficiario, ambos se agrega
 				$rspta = $informe_social->insertar($cedula,$nombre_apellido,$fecha_nacimiento,$sexo,$direccion,$telefono_1,$telefono_2,$email,$parroquia,$estado_civil,$ocupacion,$esterilizada,$beneficio_gubernamental,$num_hijo,$ingreso,$cedula_b,$nombre_apellido_b,$fecha_nacimiento_b,$parentesco_b,$semana_embarazo_b,$talla_zapato,$talla_pantalon,$talla_franela,$id_tipo_solicitud,$medio_informacion,$fecha,$tipo_vivienda,$tenencia,$construccion,$tipo_piso,$id_usuario,$_POST["id_familiar"],$_POST["nombre_apellido_f"],$_POST["fecha_nacimiento_f"],$_POST["parentesco_f"],$_POST["ocupacion_f"],$_POST["ingreso_f"],$_POST["peso_f"],$_POST["talla_f"]);
 					//Dependiendo de la inserción, la variable "repta" puede ser True o false
-				echo $rspta ? "El Informe Social a sido Registrado Correctamente en agregar ambos" : "No se pudo Registrar Todo los campos del informe social en agregar ambos ..!!!!!";
+				echo $rspta ? "La Solicitud a sido Registrado Correctamente" : "No se pudo Registrar Todo los campos de la Solicitud";
 
 				//Verificamos si uno de los ID esta vació
 			}else if (empty($id_persona) && !empty($id_solicitante)){
 				// Se actualiza el Solicitante cuando este existe en la base de datos pero no el beneficiario
 				$rspta = $informe_social->editars($id_solicitante,$cedula,$nombre_apellido,$fecha_nacimiento,$sexo,$direccion,$telefono_1,$telefono_2,$email,$parroquia,$estado_civil,$ocupacion,$esterilizada,$beneficio_gubernamental,$num_hijo,$ingreso,$cedula_b,$nombre_apellido_b,$fecha_nacimiento_b,$parentesco_b,$semana_embarazo_b,$talla_zapato,$talla_pantalon,$talla_franela,$id_tipo_solicitud,$medio_informacion,$fecha,$tipo_vivienda,$tenencia,$construccion,$tipo_piso,$id_usuario,$_POST["id_familiar"],$_POST["nombre_apellido_f"],$_POST["fecha_nacimiento_f"],$_POST["parentesco_f"],$_POST["ocupacion_f"],$_POST["ingreso_f"],$_POST["peso_f"],$_POST["talla_f"]);
 					//Dependiendo de la inserción, la variable "repta" puede ser True o false
-				echo $rspta ? "La Solicitud a sido Registrado y Actualizar el Solicitante Correctamente" : "No se pudo Registrar la solicitud y actualizar al Solicitante ..!!!!!";
+				echo $rspta ? "La Solicitud a sido Registrado Correctamente y Actualizado el Solicitante" : "No se pudo Registrar Todo los campos de la Solicitud";
 
 				//Verificamos si uno de los ID esta vació
 			}else if (!empty($id_persona) && empty($id_solicitante)){
 				// Cuando existe el beneficiario pero no el Solicitante
 				$rspta = $informe_social->editarb($cedula,$nombre_apellido,$fecha_nacimiento,$sexo,$direccion,$telefono_1,$telefono_2,$email,$parroquia,$estado_civil,$ocupacion,$esterilizada,$beneficio_gubernamental,$num_hijo,$ingreso,$id_persona,$cedula_b,$nombre_apellido_b,$fecha_nacimiento_b,$parentesco_b,$semana_embarazo_b,$talla_zapato,$talla_pantalon,$talla_franela,$id_tipo_solicitud,$medio_informacion,$fecha,$tipo_vivienda,$tenencia,$construccion,$tipo_piso,$id_usuario,$_POST["id_familiar"],$_POST["nombre_apellido_f"],$_POST["fecha_nacimiento_f"],$_POST["parentesco_f"],$_POST["ocupacion_f"],$_POST["ingreso_f"],$_POST["peso_f"],$_POST["talla_f"]);
 					//Dependiendo de la inserción, la variable "repta" puede ser True o false
-				echo $rspta ? "La Solicitud a sido Registrado y Actualizado el Beneficiario Correctamente" : "No se pudo Registrar Todo los campos del beneficiario ..!!!!!";
+				echo $rspta ? "La Solicitud a sido Registrado Correctamente y Actualizado el Beneficiario" : "No se pudo Registrar Todo los campos de la Solicitud";
 
 			}else {
 				//Cundo El beneficiario y el Solicitante Existe en el Sistema
 				$rspta = $informe_social->insertarbs($id_solicitante,$cedula,$nombre_apellido,$fecha_nacimiento,$sexo,$direccion,$telefono_1,$telefono_2,$email,$parroquia,$estado_civil,$ocupacion,$esterilizada,$beneficio_gubernamental,$num_hijo,$ingreso,$id_persona,$cedula_b,$nombre_apellido_b,$fecha_nacimiento_b,$parentesco_b,$semana_embarazo_b,$talla_zapato,$talla_pantalon,$talla_franela,$id_tipo_solicitud,$medio_informacion,$fecha,$tipo_vivienda,$tenencia,$construccion,$tipo_piso,$id_usuario,$_POST["id_familiar"],$_POST["nombre_apellido_f"],$_POST["fecha_nacimiento_f"],$_POST["parentesco_f"],$_POST["ocupacion_f"],$_POST["ingreso_f"],$_POST["peso_f"],$_POST["talla_f"]);
 					//Dependiendo de la inserción, la variable "repta" puede ser True o false
-				echo $rspta ? "La Solicitud a sido Registrado y Actualizado el Solicitante y el Beneficiario" : "No se pudo Registrar Todo los campos del informe social Solicitante y Beneficiario...!!!!!";
+				echo $rspta ? "La Solicitud a sido Registrado Correctamente y Actualizado el Solicitante y el Beneficiario" : "No se pudo Registrar Todo los campos de la Solicitud";
 			}
 		break;
 

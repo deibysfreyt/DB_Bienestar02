@@ -14,13 +14,13 @@
 				//Ahora guardamos al Solicitante
 			$sql_t = "INSERT INTO solicitante (cedula,nombre_apellido,fecha_nacimiento,sexo,direccion,telefono_1,telefono_2,email,parroquia,estado_civil,ocupacion,esterilizada,beneficio_gubernamental,num_hijo,ingreso) VALUES ('$cedula','$nombre_apellido','$fecha_nacimiento','$sexo','$direccion','$telefono_1','$telefono_2','$email','$parroquia','$estado_civil','$ocupacion','$esterilizada','$beneficio_gubernamental','$num_hijo','$ingreso')";
 			
-				// Guardamos el ultimo ID de los datos insertado
+			// Guardamos el ultimo ID de los datos insertado
 			$id_solicitante_new=ejecutarConsulta_retornarID($sql_t);
 
 				//Guardamos al beneficiario
 			$sql_b = "INSERT INTO persona (cedula_p,nombre_apellido_p,fecha_nacimiento_p,parentesco,semana_embarazo,talla_zapato,talla_pantalon,talla_franela) VALUES ('$cedula_b','$nombre_apellido_b','$fecha_nacimiento_b','$parentesco_b','$semana_embarazo_b','$talla_zapato','$talla_pantalon','$talla_franela')";
-				
-				//Guardamos el ultimo ID de los datos insertado 
+			
+				// Guardamos el ultimo ID de los datos insertado
 			$id_persona_b_new=ejecutarConsulta_retornarID($sql_b);
 
 				//Insertamnos en la tabla solicitud

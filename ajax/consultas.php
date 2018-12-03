@@ -18,7 +18,7 @@
 				// Enviamos las tres variables
 			$rspta=$consultas->aceptar($id_solicitud,$id_usuario,$fecha_actual);
 				//Dependiendo de la inserción, la variable "repta" puede ser True o false
-	 		echo $rspta ? "La Solicitud ha sido Aceptada" : "Solicitud no se puede Aceptar";
+	 		echo $rspta ? "La Solicitud ha sido Aprobada" : "Solicitud no se puedo Aprobar";
 		break;
 
 		case 'mostrar':
@@ -49,7 +49,7 @@
 					"5"=>$reg->solicitud.' - '.$reg->descripcion,
 					"6"=>$reg->parroquia,					
 					"7"=>($reg->estado == 'En espera')?'<span class="label bg-red">En espera</span>':
-	 				'<span class="label bg-green">Aprovado</span>'
+	 				'<span class="label bg-green">Aprobado</span>'
 				);
 			} //Declaramos un nuevo array y le asignamos los valores
 			$results = array(

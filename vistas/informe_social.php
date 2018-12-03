@@ -119,7 +119,7 @@
                   </div>
                   <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <label>Teléfono Principal(*):</label>
-                    <input type="text" class="form-control" name="telefono_1" id="telefono_1" maxlength="12" placeholder="04xx-1234455" required title="Telefono Celular">
+                    <input type="text" class="form-control" name="telefono_1" id="telefono_1" maxlength="12" placeholder="04xx-1234455" title="Telefono Celular" required>
                   </div>
                   <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <label>Teléfono Secundario:</label>
@@ -231,7 +231,7 @@
                   </div>
                   <div class="form-group col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <label>Talla de Zapato:</label>
-                    <select name="talla_zapato" id="talla_zapato" class="form-control select-picker" title="?" data-live-search="true">
+                    <select name="talla_zapato" id="talla_zapato" class="form-control select-picker" title="?" data-live-search="true" required>
                       <?php
                         for ($i=18; $i <= 45; $i++) { 
                           echo "<option value=$i>". $i. "</option>";
@@ -241,7 +241,7 @@
                   </div>
                   <div class="form-group col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <label>Talla de Pantalón:</label>
-                    <select name="talla_pantalon" id="talla_pantalon" class="form-control select-picker" title="?" data-live-search="true">
+                    <select name="talla_pantalon" id="talla_pantalon" class="form-control select-picker" title="?" data-live-search="true" required>
                       <?php
                         for ($i=2; $i <= 36; $i+=2) { 
                           echo "<option value=$i>". $i. "</option>";
@@ -251,7 +251,7 @@
                   </div>
                   <div class="form-group col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <label>Talla de Franela:</label>
-                    <select name="talla_franela" id="talla_franela" class="form-control select-picker" title="?" data-live-search="true">
+                    <select name="talla_franela" id="talla_franela" class="form-control select-picker" title="?" data-live-search="true" required>
                       <?php
                         for ($i=2; $i <= 16; $i+=2) { 
                           echo "<option value=$i>". $i. "</option>";
@@ -342,8 +342,8 @@
                         <th>Parentesco</th>
                         <th>Ocupacion</th>
                         <th>Ingreso Bs</th>
-                        <th>Peso</th>
-                        <th>Talla</th>                              
+                        <th>Peso Kg</th>
+                        <th>Talla cm</th>                              
                       </thead>
                       <tbody>
                                   
@@ -364,7 +364,7 @@
                     <div class="setup-panel">
                				<div>
                         <a href="#step-2"><button class=" btn btn-previous btn-lg pull-right" type="button" style="margin: 2px"><strong>Anterior</strong></button></a>
-                        <button class="btn btn-primary btn-lg pull-right" type="submit" id="btnGuardar" style="margin: 2px" onmouseover="validacion()"><i class="fa fa-save"></i> Guardar</button> 
+                        <button class="btn btn-primary btn-lg pull-right" type="submit" id="btnGuardar" style="margin: 2px" onmouseover="validacion()" ><i class="fa fa-save"></i> Guardar</button> 
                 			</div>                
             				</div>                          
                   </div>
