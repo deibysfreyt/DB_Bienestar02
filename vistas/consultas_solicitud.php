@@ -86,7 +86,7 @@
           </div>
           <form method="POST" id="formulario" name="formulario">
             <label>N° de Control:</label>
-              <input type="text" name="id_solicitud" id="id_solicitud" style="border: 0px" readonly=”readonly”>
+              <input type="text" name="id_solicitud" id="id_solicitud" style="border: 0px; color: red; font-weight: bold;" readonly=”readonly”>
             <div class="row setup-content" id="step-1">
               <div class="col-xs-12">
                 <div class="col-md-12">
@@ -224,11 +224,11 @@
                     <input type="date" class="form-control" name="fecha" id="fecha" readonly=”readonly” required>
                   </div>
                   <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <h4><strong>Área Física Ambiental</strong></h4>
+                    <h4 style="text-align: center;"><strong>Área Física Ambiental</strong></h4>
                   </div>
                   <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <label>Tipo de Vivienda(*):</label>
-                    <input type="text" class="form-control" name="tipo_vivienda" id="tipo_vivienda" readonly=”readonly”>       
+                    <input type="text" class="form-control" name="tipo_vivienda" id="tipo_vivienda" readonly=”readonly”>     
                   </div>
                   <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <label>Tenencia(*):</label>
@@ -241,6 +241,36 @@
                   <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <label>Piso(*):</label>
                     <input type="text" class="form-control" name="tipo_piso" id="tipo_piso" readonly=”readonly”>
+                  </div>
+                  <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h4 style="text-align: center;"><strong>Grupo Familiar</strong></h4>
+                  </div>
+                  <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                    <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
+                      <thead style="background-color:#A9D0F5">
+                        <th>Opciones</th>
+                        <th>Nombre y Apellido</th>
+                        <th>Fech. de Naci.</th>
+                        <th>Parentesco</th>
+                        <th>Ocupacion</th>
+                        <th>Ingreso Bs</th>
+                        <th>Peso Kg</th>
+                        <th>Talla cm</th>
+                      </thead>
+                      <tbody>
+                                  
+                      </tbody>
+                      <tfoot>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th> 
+                      </tfoot>                      
+                    </table>
                   </div>
                   <div class="form-group pull-right col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="setup-panel">

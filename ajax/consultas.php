@@ -29,6 +29,42 @@
 			echo json_encode($rspta);
 		break;
 
+		case 'listarFamiliar':
+			//Recibimos el id de la solicitud
+			$id = isset($_GET["id"])? limpiarCadena($_GET["id"]): "";
+			//$id=$_GET["id"];
+			//echo $id;
+
+			$rspta = $consultas->listarFamiliar($id);
+
+			echo '<thead style="background-color:#A9D0F5">
+                	<th>N°</th>
+                    <th>Nombre y Apellido</th>
+                    <th>Fech. de Naci.</th>
+                    <th>Parentesco</th>
+                    <th>Ocupacion</th>
+                    <th>Ingreso Bs</th>
+                    <th>Peso Kg</th>
+                    <th>Talla cm</th>
+                 </thead>';
+                 $num = 1;
+			while ($reg = $rspta->fetchObject()) {
+				echo '<tr class="filas"><td>'.$num.'</td><td>'.$reg->nombre_apellido_f.'</td><td>'.$reg->fecha_nacimiento_f.'</td><td>'.$reg->parentesco_f.'</td><td>'.$reg->ocupacion_f.'</td><td>'.$reg->ingreso_f.'</td><td>'.$reg->peso_f.'</td><td>'.$reg->talla_f.'</td></tr>';
+				$num= $num + 1;
+			}
+
+			echo '<tfoot>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th> 
+                </tfoot>';
+		break;
+
 		case 'consultasfecha':
 				// Recibimos las variables y las almacenamos
 			$fecha_inicio = $_REQUEST["fecha_inicio"];

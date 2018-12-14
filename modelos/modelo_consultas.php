@@ -34,6 +34,14 @@
 			return ejecutarConsulta($sql);
 		}
 
+		//listar familiares
+		public function listarFamiliar($id_solicitud){
+
+			$sql = "SELECT f.nombre_apellido_f,f.fecha_nacimiento_f,f.parentesco_f,f.ocupacion_f,f.ingreso_f,f.peso_f,f.talla_f FROM familiar f INNER JOIN familiar_solicitud fs ON f.id_familiar=fs.id_familiar INNER JOIN solicitud s ON fs.id_solicitud=s.id_solicitud WHERE fs.id_solicitud='$id_solicitud'";
+			
+			return ejecutarConsulta($sql);
+		}
+
 			// Implementamos un método para consultar los movimiento en el sistema heha por el Usuario
 		public function consultasistema($fecha_inicio,$fecha_fin){
 			

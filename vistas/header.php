@@ -61,13 +61,13 @@
                 			<!-- Cuenta de usuario: el estilo se puede encontrar en el menú desplegable. -->
               			<li class="dropdown user user-menu">
                 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  				<img src="../files/usuario/<?php echo $_SESSION['imagen']; ?>" class="user-image" alt="User Image">
+                  				<img src="../files/usuario/<?php echo $_SESSION['imagen']; ?>" class="user-image" alt="Usuario">
                   				<span class="hidden-xs"><?php echo $_SESSION['nombre_apellido']; ?></span>
                 			</a>
                 			<ul class="dropdown-menu">
                     				<!-- Imanen del Usuario -->
                   				<li class="user-header">
-                    				<img src="../files/usuario/<?php echo $_SESSION['imagen']; ?>" class="img-circle" alt="User Image">
+                    				<img src="../files/usuario/<?php echo $_SESSION['imagen']; ?>" class="img-circle" alt="Usuario">
                     				<p><?php echo $_SESSION['nombre_apellido']; ?></p>
                     				<a href="../ajax/usuario.php?op=salir" class="btn btn-default btn-flat">Cerrar Sesión</a>
                   				</li>
@@ -84,9 +84,7 @@
         	<section class="sidebar">
           		<!-- Panel de usuario de la barra lateral -->
           		<div class="user-panel">
-            		<div class="pull-left image">
-              			<img src="../files/usuario/<?php echo $_SESSION['imagen']; ?>" class="img-circle" alt="User Image">
-            		</div>
+            		
             		<div class="pull-left info">
               			<p><?php echo $_SESSION['nombre_apellido']; ?></p>
               			<a href="#"><i class="fa fa-circle text-success"></i> Online</a>

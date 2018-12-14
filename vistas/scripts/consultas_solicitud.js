@@ -59,6 +59,9 @@ function limpiar(){
 	$("#tipo_piso").val("");
     $('#fecha').val("");
 
+    //removemos las filas de los familiares
+	$(".filas").remove();
+
 }
 
 //Funcion mostrar formulario
@@ -162,7 +165,13 @@ function mostrar(id_solicitud){
 		$("#construccion").val(data.construccion);
 		$("#tipo_piso").val(data.tipo_piso);
 		
-	})
+	});
+
+	$.post("../ajax/consultas.php?op=listarFamiliar&id="+id_solicitud,function(r)
+	{
+		$("#detalles").html(r);	
+	});
+
 }
 
 //Función para Aceptar la solicitud
