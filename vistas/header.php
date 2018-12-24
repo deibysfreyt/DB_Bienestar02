@@ -81,15 +81,7 @@
         	<!-- Columna lateral izquierda. contiene el logo y la barra lateral -->
     	<aside class="main-sidebar">
         		<!-- sidebar: el estilo se puede encontrar en sidebar.less -->
-        	<section class="sidebar">
-          		<!-- Panel de usuario de la barra lateral -->
-          		<div class="user-panel">
-            		
-            		<div class="pull-left info">
-              			<p><?php echo $_SESSION['nombre_apellido']; ?></p>
-              			<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            		</div>
-          		</div>            
+        	<section class="sidebar">            
             		<!-- sidebar menu:: style se puede encontrar en sidebar.less -->
           		<ul class="sidebar-menu" data-widget="tree">
             		<li class="header">MENU DE NAVEGACION</li>

@@ -57,7 +57,7 @@
 		</tr>
 		<tr>
 			<td colspan="4" align="center"><strong style="font-size: 15px"><u><h5>INFORME SOCIAL</h5></u></strong></td>
-		</tr>s
+		</tr>
 		<tr>
 			<td colspan="4"><br></td>
 		</tr>
