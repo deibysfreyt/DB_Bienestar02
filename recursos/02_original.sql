@@ -110,6 +110,81 @@ ALTER SEQUENCE public.beneficiario_id_beneficiario_seq OWNED BY public.persona.i
 
 
 --
+-- Name: familiar; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.familiar (
+    id_familiar integer NOT NULL,
+    nombre_apellido_f character(30),
+    fecha_nacimiento_f date,
+    parentesco_f character(10),
+    ocupacion_f character(50),
+    ingreso_f character(7),
+    peso_f character(6),
+    talla_f character(3)
+);
+
+
+ALTER TABLE public.familiar OWNER TO postgres;
+
+--
+-- Name: familiar_id_familiar_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.familiar_id_familiar_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.familiar_id_familiar_seq OWNER TO postgres;
+
+--
+-- Name: familiar_id_familiar_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.familiar_id_familiar_seq OWNED BY public.familiar.id_familiar;
+
+
+--
+-- Name: familiar_solicitud; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.familiar_solicitud (
+    id_familiar_solicitud integer NOT NULL,
+    id_familiar integer,
+    id_solicitud integer
+);
+
+
+ALTER TABLE public.familiar_solicitud OWNER TO postgres;
+
+--
+-- Name: familiar_solicitud_id_familiar_solicitud_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.familiar_solicitud_id_familiar_solicitud_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.familiar_solicitud_id_familiar_solicitud_seq OWNER TO postgres;
+
+--
+-- Name: familiar_solicitud_id_familiar_solicitud_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.familiar_solicitud_id_familiar_solicitud_seq OWNED BY public.familiar_solicitud.id_familiar_solicitud;
+
+
+--
 -- Name: permiso; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -182,7 +257,9 @@ CREATE TABLE public.solicitante (
     estado_civil character(13) NOT NULL,
     ocupacion character(50) NOT NULL,
     esterilizada character(2) NOT NULL,
-    beneficio_gubernamental character(50)
+    beneficio_gubernamental character(50),
+    num_hijo integer,
+    ingreso character(6)
 );
 
 
@@ -309,12 +386,12 @@ CREATE TABLE public.solicitud (
     id_solicitud integer NOT NULL,
     id_solicitante integer NOT NULL,
     id_tipo_solicitud integer NOT NULL,
-    id_persona integer,
+    id_persona integer NOT NULL,
     fecha date NOT NULL,
     medio_informacion character(30) NOT NULL,
     tipo_vivienda character(11) NOT NULL,
     tenencia character(9) NOT NULL,
-    construccion character(9),
+    construccion character(9) NOT NULL,
     tipo_piso character(8) NOT NULL,
     estado character(9) NOT NULL
 );
@@ -756,6 +833,20 @@ ALTER SEQUENCE public.visita_social_id_visita_social_seq OWNED BY public.visita_
 
 
 --
+-- Name: familiar id_familiar; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.familiar ALTER COLUMN id_familiar SET DEFAULT nextval('public.familiar_id_familiar_seq'::regclass);
+
+
+--
+-- Name: familiar_solicitud id_familiar_solicitud; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.familiar_solicitud ALTER COLUMN id_familiar_solicitud SET DEFAULT nextval('public.familiar_solicitud_id_familiar_solicitud_seq'::regclass);
+
+
+--
 -- Name: permiso id_permiso; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -819,6 +910,51 @@ ALTER TABLE ONLY public.visita_social ALTER COLUMN id_visita_social SET DEFAULT 
 
 
 --
+-- Data for Name: familiar; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.familiar VALUES (1, 'dcsfsr                        ', '2018-11-05', 'scscs     ', 'scscsc                                            ', '1      ', '2     ', '3  ');
+INSERT INTO public.familiar VALUES (2, 'xwd3dqwd                      ', '2018-11-01', 'ewqe      ', 'acdasc                                            ', '3      ', '5     ', '6  ');
+INSERT INTO public.familiar VALUES (3, 'prueba2                       ', '2018-11-05', 'prueba2   ', 'prueba2                                           ', '2.000  ', '0     ', '   ');
+INSERT INTO public.familiar VALUES (4, 'prueba22                      ', '2018-11-02', 'prueba22  ', 'prueba22                                          ', '0      ', '1     ', '   ');
+INSERT INTO public.familiar VALUES (5, 'prueba23                      ', '2018-11-05', 'prueba23  ', 'prueba23                                          ', '2      ', '3     ', '   ');
+INSERT INTO public.familiar VALUES (6, 'dwdad                         ', '2018-11-20', 'adwasfs   ', 'sefsef                                            ', '9      ', '8     ', '7  ');
+INSERT INTO public.familiar VALUES (7, 'wdadada                       ', '2018-11-14', 'fesfsf    ', 'sefsef                                            ', '6      ', '5     ', '4  ');
+INSERT INTO public.familiar VALUES (8, 'fami1                         ', '2018-11-30', 'hermano   ', 'chofer                                            ', '1.000  ', '90    ', '80 ');
+INSERT INTO public.familiar VALUES (9, 'fami2                         ', '2018-11-26', 'padre     ', 'colector                                          ', '500    ', '70    ', '150');
+INSERT INTO public.familiar VALUES (10, 'fami3                         ', '2018-10-12', 'madre     ', 'puta                                              ', '10.000 ', '60    ', '180');
+INSERT INTO public.familiar VALUES (11, 'familiares1                   ', '2018-11-26', 'hermana   ', 'cantante                                          ', '10.000 ', '50    ', '160');
+INSERT INTO public.familiar VALUES (12, 'familiares2                   ', '1986-12-02', 'Marico    ', 'regalado                                          ', '5.000  ', '70    ', '180');
+INSERT INTO public.familiar VALUES (13, 'familiares3                   ', '1999-11-05', 'Primo     ', 'doctor                                            ', '8.000  ', '90    ', '168');
+INSERT INTO public.familiar VALUES (14, 'Nunm1                         ', '2009-10-08', 'quien     ', 'nada                                              ', '0      ', '100   ', '150');
+INSERT INTO public.familiar VALUES (15, 'Num2                          ', '2013-10-26', 'sabe      ', 'menos                                             ', '0      ', '90    ', '160');
+INSERT INTO public.familiar VALUES (16, 'fami sin soli y sin bene 1    ', '2009-07-14', 'esta      ', 'vamos                                             ', '4.500  ', '40    ', '169');
+INSERT INTO public.familiar VALUES (17, 'fami sin soli y sin bene 2    ', '1996-08-14', 'ves       ', 'a intentar                                        ', '5.000  ', '56    ', '180');
+INSERT INTO public.familiar VALUES (18, 'fami sin soli y sin bene 3    ', '2000-08-07', 'es        ', 'por ultima                                        ', '9.444  ', '75    ', '143');
+INSERT INTO public.familiar VALUES (19, 'fami sin soli y sin bene 4    ', '2014-08-11', 'el final  ', 'vez                                               ', '1.230  ', '70    ', '100');
+
+
+--
+-- Data for Name: familiar_solicitud; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.familiar_solicitud VALUES (9, 1, 56);
+INSERT INTO public.familiar_solicitud VALUES (10, 2, 56);
+INSERT INTO public.familiar_solicitud VALUES (11, 3, 57);
+INSERT INTO public.familiar_solicitud VALUES (12, 4, 57);
+INSERT INTO public.familiar_solicitud VALUES (13, 5, 57);
+INSERT INTO public.familiar_solicitud VALUES (16, 8, 59);
+INSERT INTO public.familiar_solicitud VALUES (17, 9, 59);
+INSERT INTO public.familiar_solicitud VALUES (18, 10, 59);
+INSERT INTO public.familiar_solicitud VALUES (19, 14, 60);
+INSERT INTO public.familiar_solicitud VALUES (20, 15, 60);
+INSERT INTO public.familiar_solicitud VALUES (21, 16, 61);
+INSERT INTO public.familiar_solicitud VALUES (22, 17, 61);
+INSERT INTO public.familiar_solicitud VALUES (23, 18, 61);
+INSERT INTO public.familiar_solicitud VALUES (24, 19, 61);
+
+
+--
 -- Data for Name: permiso; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -832,101 +968,128 @@ INSERT INTO public.permiso VALUES (4, 'Reportes                      ');
 -- Data for Name: persona; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.persona VALUES (28, '65432865', 'prueba de registro benefi     ', '2018-10-29', 'Suegra(o) ', '0 ', '25', '20', 'M  ');
-INSERT INTO public.persona VALUES (29, '44556889', 'quien sabe                    ', '2016-09-14', 'Yerna(o)  ', '16', '34', '32', 'M  ');
-INSERT INTO public.persona VALUES (27, '21334456', 'Freytez Salas                 ', '2018-09-12', 'Tia(o)    ', '15', '29', '22', 'S  ');
+INSERT INTO public.persona VALUES (34, '45689989', 'prueba benefi                 ', '2018-11-23', 'Hija(o)   ', '0 ', '30', '30', 'M  ');
+INSERT INTO public.persona VALUES (33, '        ', 'ana baske                     ', '2016-06-15', 'Tia(o)    ', '18', '32', '28', 'L  ');
+INSERT INTO public.persona VALUES (35, '34538758', 'prueba                        ', '2018-11-15', 'Tia(o)    ', '0 ', '23', '10', 'S  ');
+INSERT INTO public.persona VALUES (32, '19000000', 'Esdinaldo Salas               ', '2007-02-05', 'Nieta(o)  ', '  ', '29', '22', 'M  ');
+INSERT INTO public.persona VALUES (37, '46823796', 'Benefi con solicitante        ', '2014-12-04', 'Suegra(o) ', '  ', '18', '14', '12 ');
+INSERT INTO public.persona VALUES (38, '00788690', 'sin soli y sin bene           ', '2006-02-22', 'Nieta(o)  ', '13', '36', '34', '2XL');
 
 
 --
 -- Data for Name: solicitante; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.solicitante VALUES (29, '56489999', 'prueba de beneficiario        ', '2008-09-11', 'Masculino', 'no me acuerdo                                                                                       ', '0424-5686398', '            ', '                              ', 'Felipe Alvarado ', 'Separada(o)  ', 'nose nada                                         ', 'Si', '                                                  ');
-INSERT INTO public.solicitante VALUES (30, '63966363', 'prueba Valida                 ', '1998-08-05', 'Masculino', 'en la vitoria                                                                                       ', '0416-3562547', '            ', 'validadiona@gmail.com         ', 'Felipe Alvarado ', 'Conviviente  ', 'ninguno                                           ', 'Si', 'adawda                                            ');
-INSERT INTO public.solicitante VALUES (28, '19640123', 'Andres Rey                    ', '1997-11-20', 'Femenino ', 'victoria calle 3entre carrerar 5 y 6                                                                ', '0416-3566364', '            ', 'deibysfreytez@gmail.com       ', 'Tamaca          ', 'Conviviente  ', 'obrero                                            ', 'Si', 'ninguno                                           ');
+INSERT INTO public.solicitante VALUES (35, '12365955', 'prueba                        ', '2018-11-23', 'Masculino', 'prueba                                                                                              ', '0414-3659863', '0251-2736989', 'prueba@gmil.com               ', 'Unión           ', 'Soltera(o)   ', 'ninguna                                           ', 'Si', 'adwqwd                                            ', 0, '1.800 ');
+INSERT INTO public.solicitante VALUES (36, '6864884 ', 'lo que no sabemos             ', '2018-11-02', 'Femenino ', 'calle 3 entre 4 y 5 a lo evera                                                                      ', '0416-3267562', '0251-7896532', 'freyte@hotmail.com            ', 'El Cuji         ', 'Soltera(o)   ', 'nnguna                                            ', 'No', 'hogares                                           ', 7, '2.000 ');
+INSERT INTO public.solicitante VALUES (37, '65865256', 'pruB_Familiar_Solicitante     ', '2018-11-27', 'Femenino ', 'calle prueba familiar sin solicitante                                                               ', '0416-3566364', '            ', 'fami_sin@solicitario.com      ', 'Unión           ', 'Divorciada(o)', 'prueba fami sin solicitante pero con beneficiario ', 'Si', 'familiar sin solicitante                          ', 13, '1.880 ');
+INSERT INTO public.solicitante VALUES (33, '19640186', 'Deibys Freytez                ', '1989-09-14', 'Masculino', 'calle 3 entre carrera 4 y 5 Barrio la Victoria                                                      ', '0424-5684643', '0251-2736860', 'deibysfreytez@gmail.com       ', 'Catedral        ', 'Conviviente  ', 'estudiante obrero                                 ', 'Si', 'hogares patrias                                   ', 3, '2.800 ');
+INSERT INTO public.solicitante VALUES (34, '12942778', 'carina navos                  ', '2015-06-16', 'Femenino ', 'victoria solicitante existe pero no el beneficiario                                                 ', '0424-0000000', '0251-2736860', 'solicitante_sin@benefi.com    ', 'Santa Rosa      ', 'Casada(o)    ', 'solicitante sin beneficiario                      ', 'No', 'horages patria                                    ', 0, '1.800 ');
+INSERT INTO public.solicitante VALUES (38, '00025655', 'Sin Soli y Sin Bene           ', '2006-03-16', 'Femenino ', 'sin Solicit y Sin benefiario                                                                        ', '0424-5698799', '0251-8945632', 'sin_soli_sin_bene@ejemplo.com ', 'Tamaca          ', 'Casada(o)    ', 'Quin sabe sin solicitante y sin bene              ', 'Si', 'ninguno                                           ', 14, '4.500 ');
 
 
 --
 -- Data for Name: solicitud; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.solicitud VALUES (38, 28, 2, 27, '2018-11-02', 'internet                      ', 'Apartamento', 'Alquilada', 'Bahareque', 'Tierra  ', 'En espera');
-INSERT INTO public.solicitud VALUES (41, 28, 3, 28, '2018-11-02', 'folleto                       ', 'Quinta     ', 'Otros    ', 'Zinc     ', 'Cemento ', 'Aprobado ');
-INSERT INTO public.solicitud VALUES (40, 29, 3, 27, '2018-11-02', 'vecina                        ', 'Casa       ', 'Alquilada', 'Bahareque', 'Granito ', 'Aprobado ');
-INSERT INTO public.solicitud VALUES (37, 28, 6, 27, '2018-11-01', 'radio                         ', 'Apartamento', 'Alojada  ', 'Bahareque', 'Granito ', 'Aprobado ');
-INSERT INTO public.solicitud VALUES (42, 30, 1, 29, '2018-11-02', 'internet                      ', 'Apartamento', 'Propia   ', 'Bahareque', 'Granito ', 'En espera');
-INSERT INTO public.solicitud VALUES (43, 28, 1, 27, '2018-11-02', 'csdcse                        ', 'Apartamento', 'Alojada  ', 'Bloque   ', 'Granito ', 'En espera');
-INSERT INTO public.solicitud VALUES (44, 28, 1, 27, '2018-11-03', 'afsefseFFE                    ', 'Apartamento', 'Alquilada', 'Bahareque', 'Cerámica', 'En espera');
-INSERT INTO public.solicitud VALUES (39, 28, 1, 28, '2018-11-02', 'radio                         ', 'Apartamento', 'Otros    ', 'Bahareque', 'Granito ', 'Aprobado ');
+INSERT INTO public.solicitud VALUES (48, 33, 5, 32, '2018-11-23', 'radio                         ', 'Rancho     ', 'Otros    ', 'Otros    ', 'Tierra  ', 'En espera');
+INSERT INTO public.solicitud VALUES (49, 33, 1, 32, '2018-11-23', 'conocida                      ', 'Casa       ', 'Propia   ', 'Bahareque', 'Cerámica', 'En espera');
+INSERT INTO public.solicitud VALUES (47, 33, 3, 32, '2018-11-23', 'amigo                         ', 'Casa       ', 'Alojada  ', 'Bloque   ', 'Cemento ', 'Aprobado ');
+INSERT INTO public.solicitud VALUES (50, 34, 6, 33, '2018-11-23', 'trabajadora                   ', 'Casa       ', 'Alojada  ', 'Bloque   ', 'Granito ', 'Aprobado ');
+INSERT INTO public.solicitud VALUES (51, 35, 3, 34, '2018-11-23', 'conocida                      ', 'Apartamento', 'Alquilada', 'Zinc     ', 'Cerámica', 'En espera');
+INSERT INTO public.solicitud VALUES (52, 33, 2, 32, '2018-11-24', 'conocida                      ', 'Quinta     ', 'Otros    ', 'Otros    ', 'Granito ', 'En espera');
+INSERT INTO public.solicitud VALUES (53, 34, 6, 33, '2018-11-24', 'conocida                      ', 'Apartamento', 'Alquilada', 'Bahareque', 'Cerámica', 'En espera');
+INSERT INTO public.solicitud VALUES (54, 33, 1, 32, '2018-11-24', 'trabajadora                   ', 'Apartamento', 'Propia   ', 'Zinc     ', 'Tierra  ', 'En espera');
+INSERT INTO public.solicitud VALUES (55, 33, 1, 32, '2018-11-24', 'trabajadora                   ', 'Apartamento', 'Alquilada', 'Bloque   ', 'Granito ', 'En espera');
+INSERT INTO public.solicitud VALUES (56, 34, 2, 33, '2018-11-24', 'trabajadora                   ', 'Apartamento', 'Alojada  ', 'Zinc     ', 'Cemento ', 'En espera');
+INSERT INTO public.solicitud VALUES (57, 36, 5, 35, '2018-11-24', 'trabajadora                   ', 'Apartamento', 'Alojada  ', 'Bloque   ', 'Granito ', 'En espera');
+INSERT INTO public.solicitud VALUES (60, 34, 2, 37, '2018-12-02', 'radio                         ', 'Casa       ', 'Alquilada', 'Zinc     ', 'Cerámica', 'En espera');
+INSERT INTO public.solicitud VALUES (61, 38, 2, 38, '2018-12-02', 'Amiga                         ', 'Quinta     ', 'Otros    ', 'Zinc     ', 'Cemento ', 'En espera');
+INSERT INTO public.solicitud VALUES (59, 37, 2, 32, '2018-12-02', 'cualquier cosa                ', 'Quinta     ', 'Alojada  ', 'Otros    ', 'Cemento ', 'Aprobado ');
 
 
 --
 -- Data for Name: tipo_solicitud; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.tipo_solicitud VALUES (4, 'Enseres y Ayudas Tecnicas                    ', 'Cama                                         ', '1');
 INSERT INTO public.tipo_solicitud VALUES (1, 'Canastillas                                  ', 'Solo Embarazada                              ', '1');
 INSERT INTO public.tipo_solicitud VALUES (5, 'Enseres y Ayudas Tecnicas                    ', 'Coche                                        ', '1');
 INSERT INTO public.tipo_solicitud VALUES (6, 'Ayudas Medicas                               ', 'Insumos                                      ', '1');
 INSERT INTO public.tipo_solicitud VALUES (3, 'Ayudas Medicas                               ', 'Cirugía                                      ', '1');
-INSERT INTO public.tipo_solicitud VALUES (2, 'Ayudas Medicas                               ', 'Alimentacion                                 ', '0');
+INSERT INTO public.tipo_solicitud VALUES (4, 'Enseres y Ayudas Tecnicas                    ', 'Cama                                         ', '0');
+INSERT INTO public.tipo_solicitud VALUES (2, 'Ayudas Medicas                               ', 'Alimentacion                                 ', '1');
 
 
 --
 -- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.usuario VALUES (7, 'deibys                        ', '19640186', '0424-5684643', 'deibysfreytez@gmail.com       ', 'Programador         ', 'deibys              ', 'f9fb27c13f249a644aac72f00fb98f304bda86ac6534746f037c66f5726d1efb', '1541352514.jpeg                                   ', 1);
-INSERT INTO public.usuario VALUES (33, 'Tomas                         ', '12233333', '0416-1111111', 'ejemplo@gmail.com             ', 'programador         ', 'admin               ', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', '1541549323.jpg                                    ', 1);
+INSERT INTO public.usuario VALUES (34, 'ruth                          ', '12345678', '0416-0000000', '                              ', 'ninguno             ', 'ruth                ', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', '1542982577.png                                    ', 1);
+INSERT INTO public.usuario VALUES (7, 'deibys                        ', '19640186', '0424-5684643', 'deibysfreytez@gmail.com       ', 'Programador         ', 'deibys              ', 'f9fb27c13f249a644aac72f00fb98f304bda86ac6534746f037c66f5726d1efb', '1545251336.jpg                                    ', 1);
 
 
 --
 -- Data for Name: usuario_permiso; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.usuario_permiso VALUES (157, 7, 1);
-INSERT INTO public.usuario_permiso VALUES (158, 7, 2);
-INSERT INTO public.usuario_permiso VALUES (159, 7, 3);
-INSERT INTO public.usuario_permiso VALUES (160, 7, 4);
-INSERT INTO public.usuario_permiso VALUES (161, 33, 1);
-INSERT INTO public.usuario_permiso VALUES (162, 33, 2);
-INSERT INTO public.usuario_permiso VALUES (163, 33, 3);
-INSERT INTO public.usuario_permiso VALUES (164, 33, 4);
+INSERT INTO public.usuario_permiso VALUES (165, 34, 1);
+INSERT INTO public.usuario_permiso VALUES (166, 34, 2);
+INSERT INTO public.usuario_permiso VALUES (167, 34, 3);
+INSERT INTO public.usuario_permiso VALUES (168, 34, 4);
+INSERT INTO public.usuario_permiso VALUES (169, 7, 1);
+INSERT INTO public.usuario_permiso VALUES (170, 7, 2);
+INSERT INTO public.usuario_permiso VALUES (171, 7, 3);
+INSERT INTO public.usuario_permiso VALUES (172, 7, 4);
 
 
 --
 -- Data for Name: usuario_solicitud; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.usuario_solicitud VALUES (30, 37, 7, '2018-11-01', 'Registro de Solicitud                        ');
-INSERT INTO public.usuario_solicitud VALUES (31, 38, 7, '2018-11-02', 'Registro de Solicitud                        ');
-INSERT INTO public.usuario_solicitud VALUES (32, 39, 7, '2018-11-02', 'Registro de Solicitud                        ');
-INSERT INTO public.usuario_solicitud VALUES (33, 40, 7, '2018-11-02', 'Registro de Solicitud                        ');
-INSERT INTO public.usuario_solicitud VALUES (34, 41, 7, '2018-11-02', 'Registro de Solicitud                        ');
-INSERT INTO public.usuario_solicitud VALUES (35, 41, 7, '2018-11-02', 'Aprobo la Solicitud                          ');
-INSERT INTO public.usuario_solicitud VALUES (36, 40, 7, '2018-11-02', 'Aprobo la Solicitud                          ');
-INSERT INTO public.usuario_solicitud VALUES (37, 37, 7, '2018-11-02', 'Aprobo la Solicitud                          ');
-INSERT INTO public.usuario_solicitud VALUES (38, 42, 7, '2018-11-02', 'Registro de Solicitud                        ');
-INSERT INTO public.usuario_solicitud VALUES (39, 43, 7, '2018-11-02', 'Registro de Solicitud                        ');
-INSERT INTO public.usuario_solicitud VALUES (40, 44, 7, '2018-11-03', 'Registro de Solicitud                        ');
-INSERT INTO public.usuario_solicitud VALUES (41, 39, 7, '2018-11-04', 'Aprobo la Solicitud                          ');
+INSERT INTO public.usuario_solicitud VALUES (46, 47, 7, '2018-11-23', 'Registro de Solicitud                        ');
+INSERT INTO public.usuario_solicitud VALUES (47, 48, 7, '2018-11-23', 'Registro de Solicitud                        ');
+INSERT INTO public.usuario_solicitud VALUES (48, 49, 7, '2018-11-23', 'Registro de Solicitud                        ');
+INSERT INTO public.usuario_solicitud VALUES (49, 47, 7, '2018-11-23', 'Aprobo la Solicitud                          ');
+INSERT INTO public.usuario_solicitud VALUES (50, 50, 7, '2018-11-23', 'Registro de Solicitud                        ');
+INSERT INTO public.usuario_solicitud VALUES (51, 50, 7, '2018-11-23', 'Aprobo la Solicitud                          ');
+INSERT INTO public.usuario_solicitud VALUES (52, 51, 7, '2018-11-23', 'Registro de Solicitud                        ');
+INSERT INTO public.usuario_solicitud VALUES (53, 52, 7, '2018-11-24', 'Registro de Solicitud                        ');
+INSERT INTO public.usuario_solicitud VALUES (54, 53, 7, '2018-11-24', 'Registro de Solicitud                        ');
+INSERT INTO public.usuario_solicitud VALUES (55, 54, 7, '2018-11-24', 'Registro de Solicitud                        ');
+INSERT INTO public.usuario_solicitud VALUES (56, 55, 7, '2018-11-24', 'Registro de Solicitud                        ');
+INSERT INTO public.usuario_solicitud VALUES (57, 56, 7, '2018-11-24', 'Registro de Solicitud                        ');
+INSERT INTO public.usuario_solicitud VALUES (58, 57, 7, '2018-11-24', 'Registro de Solicitud                        ');
+INSERT INTO public.usuario_solicitud VALUES (60, 59, 7, '2018-12-02', 'Registro de Solicitud                        ');
+INSERT INTO public.usuario_solicitud VALUES (61, 60, 7, '2018-12-02', 'Registro de Solicitud                        ');
+INSERT INTO public.usuario_solicitud VALUES (62, 61, 7, '2018-12-02', 'Registro de Solicitud                        ');
+INSERT INTO public.usuario_solicitud VALUES (63, 59, 7, '2018-12-19', 'Aprobo la Solicitud                          ');
 
 
 --
 -- Data for Name: visita_social; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.visita_social VALUES (11, 27, '2018-10-17', 'esta en buenas condiciones                                                                                                                                                                                                                                                                                  ', 'Rosmery                                      ');
-INSERT INTO public.visita_social VALUES (12, 28, '2018-11-02', 'dwdaw                                                                                                                                                                                                                                                                                                       ', 'wadad                                        ');
-INSERT INTO public.visita_social VALUES (13, 28, '2018-11-02', 'dfsefsf                                                                                                                                                                                                                                                                                                     ', 'adfawfefawwfaewfwaAQWFQWFQW3F3WF             ');
-INSERT INTO public.visita_social VALUES (14, 29, '2018-10-31', 'mmdiwlfesau                                                                                                                                                                                                                                                                                                 ', 'deibys                                       ');
 
 
 --
 -- Name: beneficiario_id_beneficiario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.beneficiario_id_beneficiario_seq', 29, true);
+SELECT pg_catalog.setval('public.beneficiario_id_beneficiario_seq', 38, true);
+
+
+--
+-- Name: familiar_id_familiar_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.familiar_id_familiar_seq', 19, true);
+
+
+--
+-- Name: familiar_solicitud_id_familiar_solicitud_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.familiar_solicitud_id_familiar_solicitud_seq', 24, true);
 
 
 --
@@ -940,14 +1103,14 @@ SELECT pg_catalog.setval('public.permiso_id_permiso_seq', 8, true);
 -- Name: solicitante_id_solicitante_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.solicitante_id_solicitante_seq', 30, true);
+SELECT pg_catalog.setval('public.solicitante_id_solicitante_seq', 38, true);
 
 
 --
 -- Name: solicitud_numero_control_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.solicitud_numero_control_seq', 44, true);
+SELECT pg_catalog.setval('public.solicitud_numero_control_seq', 61, true);
 
 
 --
@@ -961,21 +1124,21 @@ SELECT pg_catalog.setval('public.tipo_solicitud_id_tipo_solicitud_seq', 6, true)
 -- Name: usuario_id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.usuario_id_usuario_seq', 33, true);
+SELECT pg_catalog.setval('public.usuario_id_usuario_seq', 34, true);
 
 
 --
 -- Name: usuario_permiso_id_usuario_permiso_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.usuario_permiso_id_usuario_permiso_seq', 164, true);
+SELECT pg_catalog.setval('public.usuario_permiso_id_usuario_permiso_seq', 172, true);
 
 
 --
 -- Name: usuario_solicitud_id_usuario_solicitud_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.usuario_solicitud_id_usuario_solicitud_seq', 41, true);
+SELECT pg_catalog.setval('public.usuario_solicitud_id_usuario_solicitud_seq', 63, true);
 
 
 --
@@ -983,6 +1146,22 @@ SELECT pg_catalog.setval('public.usuario_solicitud_id_usuario_solicitud_seq', 41
 --
 
 SELECT pg_catalog.setval('public.visita_social_id_visita_social_seq', 14, true);
+
+
+--
+-- Name: familiar familiar_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.familiar
+    ADD CONSTRAINT familiar_pkey PRIMARY KEY (id_familiar);
+
+
+--
+-- Name: familiar_solicitud familiar_solicitud_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.familiar_solicitud
+    ADD CONSTRAINT familiar_solicitud_pkey PRIMARY KEY (id_familiar_solicitud);
 
 
 --
@@ -1071,6 +1250,22 @@ ALTER TABLE ONLY public.persona
 
 ALTER TABLE ONLY public.usuario_solicitud
     ADD CONSTRAINT usuario_solicitud_pkey PRIMARY KEY (id_usuario_solicitud);
+
+
+--
+-- Name: familiar_solicitud fk_familiar_solicitud_familiar; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.familiar_solicitud
+    ADD CONSTRAINT fk_familiar_solicitud_familiar FOREIGN KEY (id_familiar) REFERENCES public.familiar(id_familiar) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: familiar_solicitud fk_familiar_solicitud_solicitud; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.familiar_solicitud
+    ADD CONSTRAINT fk_familiar_solicitud_solicitud FOREIGN KEY (id_solicitud) REFERENCES public.solicitud(id_solicitud) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
